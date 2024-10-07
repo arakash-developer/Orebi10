@@ -1,0 +1,527 @@
+[
+    {
+      "id": 1,
+      "title": "Table Clock Akash2",
+      "image": "/products/tableclock.png",
+      "price": 40,
+      "tag": "10",
+      "color": "black",
+      "del":100,
+      "best": true,
+      "special": true
+    },
+    {
+      "id": 2,
+      "title": "Water Bottle Akash",
+      "image": "/products/bottle.png",
+      "price": 20,
+      "tag": "10",
+      "color": "black",
+      "del":100,
+      "best": true,
+      "special": true
+    },
+    {
+      "id": 3,
+      "title": "Office Bag",
+      "image": "/products/bag.png",
+      "price": 30,
+      "tag": "10",
+      "color": "black",
+      "del":100,
+      "best": true,
+      "special": true
+    },
+    {
+      "id": 4,
+      "title": "Vegetable Box",
+      "image": "/products/box.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": true,
+      "special": true
+    },
+    {
+      "id": 5,
+      "title": "Vegetable Box2",
+      "image": "/products/box.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": true,
+      "special": true
+    },
+    {
+      "id": 6,
+      "title": "Bucket",
+      "image": "/products/bucket.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 7,
+      "title": "Haman",
+      "image": "/products/haman.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 8,
+      "title": "Hanging clock",
+      "image": "/products/hangingclock.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 9,
+      "title": "Hat",
+      "image": "/products/hat.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 10,
+      "title": "headphone",
+      "image": "/products/headphone.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 11,
+      "title": "pookie",
+      "image": "/products/pookie.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "best": false,
+      "del":100,
+      "special": true
+    },
+    {
+      "id": 12,
+      "title": "schoolbag",
+      "image": "/products/schoolbag.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 13,
+      "title": "sunglass",
+      "image": "/products/sunglass.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 14,
+      "title": "table",
+      "image": "/products/table.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":50,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 15,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    },
+    {
+      "id": 16,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 17,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 18,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 19,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 20,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 21,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 22,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 23,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 24,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 25,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 26,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 27,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 28,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 29,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 30,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 31,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 32,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 33,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 34,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 35,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 36,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 37,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 38,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 39,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 40,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 41,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 42,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 43,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 44,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+    ,
+    {
+      "id": 45,
+      "title": "Watch",
+      "image": "/products/watch.png",
+      "price": 38,
+      "tag": "",
+      "color": "black",
+      "del":100,
+      "best": false,
+      "special": true
+    }
+  ]
+
