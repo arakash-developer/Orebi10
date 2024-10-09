@@ -1,30 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import React, { useEffect, useState,useContext } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import Container from '../layers/Container';
-import Db from '../../db.json'
-import bottle from '../../../public/products/bottle.png'
 import Down from '../../../public/down3.png'
-
 import Star from '../../../public/Star.png'
 import Breadcumb from '../layers/Breadcumb';
-import { BiDownArrow } from 'react-icons/bi';
+import { Contex } from '../../context/Quantity'
 
 const Product = () => {
   const navigate = useNavigate();
+  let [opens,setOpens] = useState(false);
   let [pid, setPid] = useState(0);
   let [items, setItems] = useState([]);
   let [review, setReview] = useState([]);
   let [current, setCurrent] = useState([]);
   let { id } = useParams();
-  let [count,setCount] = useState(1);
-  let handlerDecrement = () =>{
-    setCount(count + 1);
-  }
-  let handlerIncrement = () =>{
-    if(count > 1){
-      setCount(count - 1);
-    }
-  }
   useEffect(() => {
     let getdata = async () => {
       let response = await fetch("https://dummyjson.com/products");
@@ -41,9 +30,27 @@ const Product = () => {
     setPid(id);
   }, [current])
 
-  // console.log(review);
 
+  let [count,setCount] = useState(1);
+  let [insize,setInsize] = useState("S");
+  let {setQuantity,setSize} = useContext(Contex);
 
+  let handlerDecrement = () =>{
+    setCount(count + 1);
+  }
+  let handlerIncrement = () =>{
+    if(count > 1){
+      setCount(count - 1);
+    }
+  }
+  let addtocartlist =()=>{
+    navigate(`/cart/${pid}`);
+    setQuantity(count);
+    setSize(insize);
+  }
+  let handlersize =()=>{
+    setOpens(!opens);
+  }
   return (
     <>
       <Container>
@@ -183,13 +190,19 @@ const Product = () => {
 
             <div className="mb-[30px] flex gap-x-[76px] items-center">
               <h3 className='font-dm uppercase font-bold text-base leading-[144%] text-[#262626]'>SIZE:</h3>
-              <div className="flex items-center justify-center border-[1px] border-[#f0f0f0] w-36 h-9 gap-x-[76px] px-5">
-                <h3 className='font-normal text-base leading-[187%] text-[#767676] font-dm'>S</h3>
+              <button onClick={handlersize} className="flex focus:outline-none relative items-center justify-center border-[1px] border-[#f0f0f0] w-36 h-9 gap-x-[76px] px-5">
+                <h3 className='font-normal text-base leading-[187%] text-[#767676] font-dm'>{insize}</h3>
                 <img src={Down} alt="" />
-              </div>
+                <div className={`absolute bg-[#fff] top-full left-0 w-full ${opens?"visible opacity-1":"invisible opacity-0"}`}>
+                  <button onClick={(e)=>{setInsize(e.target.value)}} value='S' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>S</button>
+                  <button onClick={(e)=>{setInsize(e.target.value)}} value='M' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>M</button>
+                  <button onClick={(e)=>{setInsize(e.target.value)}} value='L' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>L</button>
+                  <button onClick={(e)=>{setInsize(e.target.value)}} value='XL' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>XL</button>
+                </div>
+              </button>
             </div>
             <div className="mb-[30px] flex gap-x-[28px] items-center">
-              <h3 className='font-dm uppercase font-bold text-base leading-[144%] text-[#262626]'>QUANTITY:</h3>
+              <h3 className='font-dm uppercase font-bold text-base leading-[144%] text-[#262626]'>count:</h3>
               <div className="border-[1px] border-[#f0f0f0] w-36 h-9 grid grid-cols-3 items-center">
                 <button onClick={handlerIncrement} className='font-normal text-base leading-[187%] text-[#767676] font-dm'>-</button>
                 <h3 className='font-normal text-center text-base leading-[187%] text-[#767676] font-dm'>{count}</h3>
@@ -204,7 +217,7 @@ const Product = () => {
             <hr className='bg-[#f0f0f0] mt-5 mb-7' />
             <div className="flex gap-x-[20px] items-center">
               <button className='px-12 py-4 border-[1px] border-[#262626] font-bold text-sm text-center text-[#262626] font-dm'>Add to Wish List</button>
-              <button className='px-12 py-4 border-[1px] bg-[#262626] text-[#fff] font-bold text-sm text-center font-dm' onClick={() => navigate(`/cart/${pid}`)}>Add to Cart List</button>
+              <button className='px-12 py-4 border-[1px] bg-[#262626] text-[#fff] font-bold text-sm text-center font-dm' onClick={addtocartlist}>Add to Cart List</button>
             </div>
             <hr className='bg-[#f0f0f0] my-6' />
             <h3 className='font-bold text-base leading-[144%] text-[#262626] font-dm'>FEATURES  & DETAILS</h3>
