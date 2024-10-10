@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext} from 'react'
 import Container from '../layers/Container'
 import Breadcumb from '../layers/Breadcumb'
 import { useNavigate } from 'react-router-dom';
 import { FaEyeSlash } from "react-icons/fa6";
 import { FaEye } from "react-icons/fa6";
 import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4, v4 } from 'uuid';
+// import { Contex } from '../../context/Quantity';
 
 
 const SignUp = () => {
-    console.log(uuidv4());
+    let deleteAll =(e)=>{
+        e.preventDefault();
+        axios.delete("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth/1").then(()=>{
+            console.log("Deleted");
+        })
+    }
     
     const bangladeshDivisions = [
         "Dhaka",
@@ -130,6 +136,8 @@ const SignUp = () => {
     let [check, setCheck] = useState(true);
     let [eye, setEye] = useState(false);
 
+    let uid = uuidv4();
+    let tokenid = uuidv4();
 
     let manegfname = (element) => {
         setFname(element.target.value);
@@ -255,8 +263,9 @@ const SignUp = () => {
             setrePassworderr(`Match the password and repassword : ${eye ? password : ""}`);
         }
         else {
+            localStorage.setItem('token',tokenid);
+            localStorage.setItem('uuid',uid);
             signupsuccess();
-            localStorage.setItem('token',uuidv4());
             navigate("/account");
         }
 
@@ -269,6 +278,7 @@ const SignUp = () => {
     let signupsuccess = ()=>{
         try {
             axios.post("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth",{
+                uuid:uid,
                 fname:fname,
                 lname:lname,
                 email :email,
@@ -280,16 +290,20 @@ const SignUp = () => {
                 division:division,
                 district:district,
                 password:password,
-                token:uuidv4(),
+                token:tokenid,
                 header
             }).then(()=>{
+              
                 // console.log("Success");
+
               
             })
          } catch (err) {
            console.error(err.message);
          }
     }
+
+    
 
     return (
         <>
@@ -408,10 +422,8 @@ const SignUp = () => {
                             <p className='font-dm font-normal text-sm text-[#767676]'>No</p>
                         </div>
                     </div>
-
                     <a href='' onClick={loginsavedata} className='mt-[27px] mb-[140px] py-4 px-[83px] cursor-pointer focus:text-white inline-block bg-[#262626] font-bold text-sm text-center text-[#fff]'>SignUp</a>
-                </div>
-                <div className="btn  mt-5">
+                    <a href='' onClick={deleteAll} className='mt-[27px] mb-[140px] ml-2 py-4 px-[83px] cursor-pointer focus:text-white inline-block bg-[#262626] font-bold text-sm text-center text-[#fff]'>DELETE ALL DATA</a>
                 </div>
             </Container>
         </>
