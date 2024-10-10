@@ -6,27 +6,15 @@ import { useNavigate } from 'react-router-dom'
 
 const SignLog = () => {
     let tok = localStorage.getItem('token')
-    let [userdata, setUserData] = useState([])
-    let getdata = () => {
-        axios.get("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth")
-            .then((res) => {
-                setUserData(res.data)
-            })
-    }
     let navigate = useNavigate()
     let [logtoken, setLogToken] = useState(false)
     useEffect(() => {
-        getdata();
-        userdata.map((data) => {
-            if (data.token == tok) {
-                setLogToken(true)
-            } else {
-                navigate('/home')
-                setLogToken(false)
-            }
-
-        })
-    }, [tok, userdata])
+        if(tok){
+            setLogToken(true)
+        }else{
+            setLogToken(false)
+        }
+    }, [tok])
 
     let logout = () => {
         localStorage.removeItem('token')
@@ -34,18 +22,8 @@ const SignLog = () => {
         navigate('/home')
     }
 
-
-
-
     return (
-        <>
-            {/* {
-                userdata.map((data) => (
-                   
-                ))
-            } */}
-
-            {
+        <>  {
                 logtoken ?
                     <>
                         <div className='w-full'>

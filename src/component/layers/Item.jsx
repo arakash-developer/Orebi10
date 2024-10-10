@@ -21,7 +21,7 @@ const Item = ({ productTitle, productImg, productPrice, productTag, productColor
                         <h2 className='font-dm  font-bold text-xl xl:text-md text-[#262626] capitalize'>{productTitle ? productTitle : null}</h2>
                         <h3 className='font-normal text-base leading-[187%] text-[#767676] font-dm'>${productPrice ? productPrice : null}</h3>
                     </div>
-                    <h4 className='font-normal text-base leading-[187%] text-[#767676] font-dm capitalize'>{productColor ? productColor : <h1 className='text-transparent'>None</h1>}</h4>
+                    <div className='font-normal text-base leading-[187%] text-[#767676] font-dm capitalize'>{productColor ? productColor : <h5 className='text-transparent'>None</h5>}</div>
                 </div>
                 <div className="overlay absolute left-0 bottom-0 group-hover:bottom-[85px] opacity-0 group-hover:opacity-100 transition-all duration-100 bg-[#fff] z-10 w-full 2xl:h-[156px] xl:h-[100px]">
                     <ul className='text-right pr-[30px] py-[26px] h-full flex flex-col justify-between'>
