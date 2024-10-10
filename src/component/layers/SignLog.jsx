@@ -31,9 +31,14 @@ const SignLog = () => {
     useEffect(()=>{
         getdata();
     },[])
-        
+
     return (
         <>
+        {/* { 
+            userdata.map((data)=>(
+                <h1>{data.email}</h1>
+            ))
+        } */}
             {
                 token ?
                     <>
