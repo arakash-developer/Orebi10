@@ -15,7 +15,6 @@ const SignLog = () => {
             setLogToken(false)
         }
     }, [tok])
-
     let logout = () => {
         localStorage.removeItem('token')
         localStorage.removeItem('uuid')

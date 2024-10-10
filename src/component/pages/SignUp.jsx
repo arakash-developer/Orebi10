@@ -293,10 +293,8 @@ const SignUp = () => {
                 token:tokenid,
                 header
             }).then(()=>{
-              
-                // console.log("Success");
-
-              
+             console.log("Reg Data Send...")
+             
             })
          } catch (err) {
            console.error(err.message);

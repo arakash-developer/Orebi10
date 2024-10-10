@@ -14,19 +14,6 @@ const Login = () => {
     let [password, setPassword] = useState()
     let [passworderr, setPassworderr] = useState("")
     let [eye, setEye] = useState(false)
-
-    let [userdata, setUserData] = useState([])
-    let getdata = () => {
-        axios.get("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth")
-            .then((res) => {
-                setUserData(res.data)
-            })
-    }
-    useEffect(()=>{
-        getdata()
-    },[userdata])
-
-
     let manegemail = (element) => {
         setemail(element.target.value);
         setEmailerr("");
