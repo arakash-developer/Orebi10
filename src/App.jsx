@@ -38,7 +38,7 @@ const router = createBrowserRouter(
       <Route path='/products/details/:id' element={<Product />}></Route>
       <Route path='/signup' element={<SignUp />}/>
       <Route path='/login' element={<Login />}/>
-      <Route path='/home/account' element={<Home2 />}/>
+      <Route path='/account' element={<Home />}/>
       <Route path='*' element={<Error />}/>
     </Route>
   )

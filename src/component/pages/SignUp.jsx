@@ -256,7 +256,8 @@ const SignUp = () => {
         }
         else {
             signupsuccess();
-            navigate("/home/account");
+            localStorage.setItem('token',uuidv4());
+            navigate("/account");
         }
 
     }
@@ -283,7 +284,7 @@ const SignUp = () => {
                 header
             }).then(()=>{
                 // console.log("Success");
-                localStorage.setItem('token',uuidv4());
+              
             })
          } catch (err) {
            console.error(err.message);

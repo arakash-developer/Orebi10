@@ -37,6 +37,12 @@ import Item2 from "../layers/Item2";
 import GetallData from "../../lib/GetallData";
 
 const Home2 = () => {
+    let navigate = useNavigate();
+    useEffect(()=>{
+        if(!localStorage.getItem('token')){
+            navigate('/home');
+        }
+    },[])
   // const navigate = useNavigate();
   let [bestseller, setBestseller] = useState([]);
   let [specials, setSpecials] = useState([]);
@@ -207,7 +213,7 @@ const Home2 = () => {
   
   let [allproducts,setAllProducts] = useState([]);
   useEffect(()=>{
-    
+
 
     let getData = async () =>{
       let response = await fetch("https://dummyjson.com/products");
