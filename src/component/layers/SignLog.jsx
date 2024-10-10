@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Contex } from '../../context/Quantity';
+// import { Contex } from '../../context/Quantity';
 
 
 const SignLog = () => {
+    let tok = localStorage.getItem('token')
     let [userdata, setUserData] = useState([])
     let getdata = () => {
         axios.get("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth")
@@ -14,14 +15,13 @@ const SignLog = () => {
     }
     let navigate = useNavigate()
     let [logtoken, setLogToken] = useState(false)
-    let tok = localStorage.getItem('token')
     useEffect(() => {
         getdata();
         userdata.map((data) => {
             if (data.token == tok) {
-                console.log("true")
                 setLogToken(true)
             } else {
+                navigate('/home')
                 setLogToken(false)
             }
 
