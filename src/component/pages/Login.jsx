@@ -8,184 +8,51 @@ import axios from 'axios';
 
 
 const Login = () => {
+    const navigate = useNavigate()
+    let [email, setemail] = useState()
+    let [emaileer, setEmailerr] = useState("")
+    let [password, setPassword] = useState()
+    let [passworderr, setPassworderr] = useState("")
+    let [eye, setEye] = useState(false)
 
-
-    const navigate = useNavigate();
-
-
-
-    let [email, setemail] = useState();
-    let [emaileer, setEmailerr] = useState("");
-
-
-    let [password, setPassword] = useState();
-    let [passworderr, setPassworderr] = useState("");
-
-
-
-    let [check, setCheck] = useState(true);
-    let [eye, setEye] = useState(false);
-
-
-    let manegfname = (element) => {
-        setFname(element.target.value);
-        setFnameeer("");
+    let [userdata, setUserData] = useState([])
+    let getdata = () => {
+        axios.get("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth")
+            .then((res) => {
+                setUserData(res.data)
+            })
     }
+    useEffect(()=>{
+        getdata()
+    },[userdata])
 
-    let maneglname = (element) => {
-        setlname(element.target.value);
-        setLnameeer("");
-    }
 
     let manegemail = (element) => {
         setemail(element.target.value);
         setEmailerr("");
     }
 
-    let manegnumber = (element) => {
-        setNumber(element.target.value);
-        setNumbererr("");
-    }
-
-    let manegaddress1 = (element) => {
-        setAddress1(element.target.value);
-        setAddress1err1("");
-    }
-
-    let manegaddress2 = (element) => {
-        setAddress2(element.target.value);
-        setAddress1err2("");
-    }
-
-    let manegcity = (element) => {
-        setCity(element.target.value);
-        setCityerr("");
-    }
-
-    let manegpost = (element) => {
-        setPost(element.target.value);
-        setPosterr("");
-    }
-
     let manegpassword = (element) => {
         setPassword(element.target.value);
         setPassworderr("");
     }
-
-    let manegrepassword = (element) => {
-        setrePassword(element.target.value);
-        setrePassworderr("");
-    }
-
-    let manegdivision = (element) => {
-        setDivision(element.target.value);
-        setDivisionerr("");
-    }
-
-    let manegdistrict = (element) => {
-        setDistrict(element.target.value);
-        setDistricterr("");
-    }
-
     let manegEye = () => {
         setEye(!eye)
     }
 
     let loginsavedata = (e) => {
         e.preventDefault();
-
-        if (!fname) {
-            setFnameeer("Enter a first name");
-        }
-        if (!lname) {
-            setLnameeer("Enter a last name");
-        }
         if (!email) {
             setEmailerr("Enter a valid email");
-        }
-        if (!number) {
-            setNumbererr("Enter a valid phone number");
-        }
-        if (!address1) {
-            setAddress1err1("Enter a address1");
-        }
-        if (!address2) {
-            setAddress1err2("Enter a address2");
-        }
-        if (!city) {
-            setCityerr("Enter a city");
-        }
-        if (!post) {
-            setPosterr("Enter a Post Code");
-        }
-        if (!district) {
-            setDistricterr("Sellect a district");
-        }
-        if (!division) {
-            setDivisionerr("Sellect a division");
         }
         if (!password) {
             setPassworderr("Enter a valid password");
         }
-        if (!repassword) {
-            setrePassworderr("Enter a valid repassword");
-        }
-        else if (!/^(?=.*[0-9])/.test(password)) {
-            setPassworderr("Password must contain one digit from 1 to 9");
-        } else if (!/^(?=.*[a-z])/.test(password)) {
-            setPassworderr("Password must contain one lowercase letter");
-        }
-        else if (!/^(?=.*[A-Z])/.test(password)) {
-            setPassworderr("Password must contain one Uppercase letter");
-        }
-        else if (!/^(?=.*\W)/.test(password)) {
-            setPassworderr("Password must contain one special character");
-        }
-        else if (!/^(?!.* ).{8,16}$/.test(password)) {
-            setPassworderr("Password must be no-space and 8-16 characters long");
-        }
-        else if (!repassword) {
-            setrePassworderr("Enter a re password");
-        }
-        else if (password != repassword) {
-            setrePassworderr(`Match the password and repassword : ${eye ? password : ""}`);
-        }
         else {
-            signupsuccess();
-            navigate("/home/account");
-        }
-
-    }
-
-    let handlercheck = () => {
-        setCheck(!check)
-    }
-    let header = { "Access-Control-Allow-Origin": "*" };
-    let signupsuccess = () => {
-        try {
-            axios.post("https://66f38f7c71c84d805879181b.mockapi.io/orebi_auth", {
-                fname: fname,
-                lname: lname,
-                email: email,
-                number: number,
-                address1: address1,
-                address2: address2,
-                city: city,
-                post: post,
-                division: division,
-                district: district,
-                password: password,
-                token: uuidv4(),
-                header
-            }).then(() => {
-                console.log("Success");
-                localStorage.setItem('token', uuidv4());
-            })
-        } catch (err) {
-            console.error(err.message);
+           
         }
     }
-
+   
     return (
         <>
             <Container>
