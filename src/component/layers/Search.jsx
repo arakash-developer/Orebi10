@@ -7,9 +7,8 @@ import Searchi from '../../../public/search.png'
 import Cart from '../../../public/cart.png'
 import Down from '../../../public/down.png'
 import Prof from '../../../public/prof.png'
-import Bag from '../../../public/products/bag.png'
 import { Link, useNavigate } from 'react-router-dom'
-import { IoCloseSharp } from "react-icons/io5";
+import SignLog from './SignLog'
 
 
 
@@ -486,14 +485,11 @@ const Search = () => {
                 <img src={Prof} alt="" />
                 <img className='down' src={Down} alt="" />
               </button>
-              <div className="bg-red-400 w-[200px] flex flex-col items-center absolute right-0 top-8 z-[999999] profile" style={{ display: dnone }}>
-                <div className="bg-black w-full flex justify-center">
-                  <h3 className='py-4 text-[#fff] font-bold text-sm text-center font-dm'>My Account</h3>
-                </div>
-                <div className="bg-white w-full flex justify-center">
-                  <h3 className='py-4 font-dm font-normal text-sm text-center text-[#262626]'>Log Out</h3>
-                </div>
+              
+              <div className="border w-[200px] flex flex-col items-center absolute right-0 top-8 z-[999999] profile" style={{ display: dnone }}>
+                <SignLog />
               </div>
+
             </div>
             <div className="relative">
               <div className="wrap">

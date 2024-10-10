@@ -17,6 +17,9 @@ import Error from './component/pages/Error';
 import Product from './component/pages/Product-Details';
 import Products from './component/pages/Products';
 import Cart from './component/layers/Cart';
+import SignUp from './component/pages/SignUp';
+import Home2 from './component/pages/Home2';
+import Login from './component/pages/Login';
 
 
 const router = createBrowserRouter(
@@ -33,6 +36,9 @@ const router = createBrowserRouter(
       <Route path='/cart/:id' element={<Cart />}></Route>
       <Route path='/lern' element={<Learn />}></Route>
       <Route path='/products/details/:id' element={<Product />}></Route>
+      <Route path='/signup' element={<SignUp />}/>
+      <Route path='/login' element={<Login />}/>
+      <Route path='/home/account' element={<Home2 />}/>
       <Route path='*' element={<Error />}/>
     </Route>
   )

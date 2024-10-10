@@ -36,7 +36,7 @@ import Headphone from '../../../public/products/headphone.png';
 import Item2 from "../layers/Item2";
 import GetallData from "../../lib/GetallData";
 
-const Home = () => {
+const Home2 = () => {
   // const navigate = useNavigate();
   let [bestseller, setBestseller] = useState([]);
   let [specials, setSpecials] = useState([]);
@@ -207,6 +207,8 @@ const Home = () => {
   
   let [allproducts,setAllProducts] = useState([]);
   useEffect(()=>{
+    
+
     let getData = async () =>{
       let response = await fetch("https://dummyjson.com/products");
       let data = await response.json();
@@ -218,6 +220,7 @@ const Home = () => {
   
   return (
     <>
+    <h1>Home2</h1>
       <Bannar />
       <div className="shipping py-[22px] border-b border-[#F0F0F0]">
         <Container className='flex justify-between items-center'>
@@ -343,4 +346,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Home2

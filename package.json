@@ -10,13 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-paginate": "^8.2.0",
     "react-router-dom": "^6.24.1",
     "react-slick": "^0.30.2",
-    "slick-slider": "^1.8.2"
+    "slick-slider": "^1.8.2",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
