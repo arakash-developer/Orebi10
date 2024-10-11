@@ -1,32 +1,33 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Container from '../layers/Container'
 import Breadcumb from '../layers/Breadcumb'
-import Sunglass from '../../../public/products/sunglass.png';
 import Down from '../../../public/down.png';
 import Close from '../../../public/close.png'
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Contex } from '../../context/Quantity'
 
 
 const Cart = () => {
     let nevigate = useNavigate();
     let { id } = useParams();
-    let [current, setCurrent] = useState([]);
-    let [opens, setOpens] = useState(false);
+    let [opens, setOpens] = useState(false)
+    let [product, setProduct] = useState([])
+    let { quantity, setQuantity, price, setPrice, setSize, size } = useContext(Contex);
+    setPrice(product.price * quantity)
 
     useEffect(() => {
         let getdata = async () => {
             let response = await fetch("https://dummyjson.com/products");
             let data = await response.json();
-            let newdata = data.products;
-            let datacurrnt = newdata.filter((b) => (b.id == id));
-            setCurrent(datacurrnt);
+            let newdata = await data.products;
+            let uniqueProduct = newdata.find((data) => {
+                return data.id == id
+            })
+            setProduct(uniqueProduct);
         }
         getdata();
+
     }, [])
-
-
-    let { quantity, setQuantity, price, setPrice, setSize, size } = useContext(Contex);
 
     let handlerDecrement = () => {
         setQuantity(quantity + 1);
@@ -36,9 +37,6 @@ const Cart = () => {
             setQuantity(quantity - 1);
         }
     }
-    current.map((data) => {
-        setPrice(data.price * quantity)
-    })
     let handlersize = () => {
         setOpens(!opens);
     }
@@ -60,23 +58,11 @@ const Cart = () => {
                             <div className="flex items-center col-span-3">
                                 <img className='inline-block pl-5 pr-10' src={Close} alt="" />
                                 <div className="w-24 h-24">
-                                    {
-                                        current.map((data,index) => (
-                                            <img key={index} className='w-full h-full object-cover' src={data.thumbnail} alt="" />
-                                        ))
-                                    }
+                                    <img className='w-full h-full object-cover' src={product.thumbnail} alt="" />
                                 </div>
-                                {
-                                    current.map((data,index) => (
-                                        <h3 key={index} className='pl-5 font-bold text-base leading-[144%] text-[#262626] font-dm'>{data.title.slice(0, 15)}..</h3>
-                                    ))
-                                }
+                                <h3 className='pl-5 font-bold text-base leading-[144%] text-[#262626] font-dm'>{product.title}..</h3>
                             </div>
-                            {
-                                current.map((data,index) => (
-                                    <h2 key={index} className='col-span-3 font-bold text-xl text-[#262626] font-dm'>{data.price} $</h2>
-                                ))
-                            }
+                            <h2 className='col-span-3 font-bold text-xl text-[#262626] font-dm'>{product.price} $</h2>
                             <div className='col-span-3 border-[1px] border-[#f0f0f0] w-36 h-9 grid grid-cols-3 items-center'>
                                 <button onClick={handlerIncrement} className='font-normal text-base leading-[187%] text-[#767676] font-dm'>-</button>
                                 <h3 className='font-normal text-center text-base leading-[187%] text-[#767676] font-dm'>{quantity}</h3>
