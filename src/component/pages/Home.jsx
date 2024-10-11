@@ -1,10 +1,5 @@
-import { BiRightArrowAlt } from "react-icons/bi";
-import { CgArrowRight } from "react-icons/cg";
-import { CgArrowLongRight } from "react-icons/cg";
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from "react-router-dom";
 import Db from '../../db.json'
-
 //Component
 import Container from '../layers/Container'
 import Item from '../layers/Item';
@@ -16,25 +11,10 @@ import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
 import Add1 from '../../../public/Adds/add1.jpg';
 import Add2 from '../../../public/Adds/add2.png';
 import Add3 from '../../../public/Adds/add3.png';
-import Add4 from '../../../public/Adds/add4.png';
 //Gallery Adds
 import gladd1 from '../../../public/galleryadd/gladd1.jpg';
 import gladd2 from '../../../public/galleryadd/galadd2.jpg';
 import gladd3 from '../../../public/galleryadd/galadd3.png';
-// Products
-import tableclock from '../../../public/products/tableclock.png';
-import Box from '../../../public/products/box.png';
-import bottle from '../../../public/products/bottle.png';
-import OfficeBag from '../../../public/products/bag.png';
-import Haman from '../../../public/products/haman.png';
-import pookie from '../../../public/products/pookie.png';
-import Schoolbag from '../../../public/products/schoolbag.png';
-import Watch from '../../../public/products/watch.png';
-import Sunglass from '../../../public/products/sunglass.png';
-import Hat from '../../../public/products/hat.png';
-import Headphone from '../../../public/products/headphone.png';
-import Item2 from "../layers/Item2";
-import GetallData from "../../lib/GetallData";
 
 const Home = () => {
   // const navigate = useNavigate();

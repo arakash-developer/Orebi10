@@ -18,7 +18,6 @@ import Product from './component/pages/Product-Details';
 import Products from './component/pages/Products';
 import Cart from './component/layers/Cart';
 import SignUp from './component/pages/SignUp';
-import Home2 from './component/pages/Home2';
 import Login from './component/pages/Login';
 
 
