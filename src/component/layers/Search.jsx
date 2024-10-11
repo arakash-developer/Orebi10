@@ -108,7 +108,7 @@ const Search = () => {
       let filteData = allproducts.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()))
       setFilteProduct(filteData);
     }
-    console.log(fileterProduct);
+    // console.log(fileterProduct);
   }, [allproducts, search])
 
   return (

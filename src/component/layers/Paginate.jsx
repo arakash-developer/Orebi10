@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
 import Item from './Item';
 
@@ -34,40 +33,26 @@ function Items({ currentItems }) {
 
 
 const Paginate = ({ itemsPerPage, catagory }) => {
-    console.log(catagory);
     let [items, setItems] = useState([]);
-    let [beauty, setBeauty] = useState([]);
-    let [specials, setSpecials] = useState([]);
 
     useEffect(() => {
         let getdata = async () => {
             let response = await fetch("https://dummyjson.com/products");
             let data = await response.json();
             let newdata = data.products;
-            // setItems(newdata);
-            if(catagory == "beauty"){
-                let by = newdata.filter((b) => (b.category == "beauty"));
-                setItems(by);
-            }
-            if(catagory == "fragrances"){
-                let fr = newdata.filter((b) => (b.category == "fragrances"));
-                setItems(fr);
-            }
-            if(catagory == "groceries"){
-                let fr = newdata.filter((b) => (b.category == "groceries"));
-                setItems(fr);
-            }
-            if(catagory == "furniture"){
-                let fr = newdata.filter((b) => (b.category == "furniture"));
-                setItems(fr);
-            }
+            setItems(newdata);
+
+            let cat = newdata.filter((data)=>{
+                return data.category == catagory 
+            })
+            setItems(cat)
+            
             if(catagory == "regular"){
-                setItems(newdata);
+                setItems(newdata)
             }
         }
         getdata();
-        // let sp = Db.filter((s) => (s.special == true))
-    }, [catagory])
+    },[catagory])
 
     const [itemOffset, setItemOffset] = useState(0);
 

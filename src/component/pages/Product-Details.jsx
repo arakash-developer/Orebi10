@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Container from '../layers/Container';
 import Down from '../../../public/down3.png'
@@ -8,132 +8,94 @@ import { Contex } from '../../context/Quantity'
 
 const Product = () => {
   const navigate = useNavigate();
-  let [opens,setOpens] = useState(false);
-  let [pid, setPid] = useState(0);
+  let [opens, setOpens] = useState(false);
   let [items, setItems] = useState([]);
+  let [singleproduct, setSingleProduct] = useState([]);
   let [review, setReview] = useState([]);
-  let [current, setCurrent] = useState([]);
   let { id } = useParams();
   useEffect(() => {
     let getdata = async () => {
       let response = await fetch("https://dummyjson.com/products");
       let data = await response.json();
       let newdata = data.products;
-      let datacurrnt = newdata.filter((b) => (b.id == pid));
-      setCurrent(datacurrnt);
-      setItems(newdata);
-      current.map((data) => {
-        setReview(data.reviews);
+      // console.log(newdata);
+      let customProduct = newdata.filter((data) => {
+        return data.id == id
       })
+      setSingleProduct(customProduct)
+
     }
     getdata();
-    setPid(id);
-  }, [current])
+  }, [])
 
 
-  let [count,setCount] = useState(1);
-  let [insize,setInsize] = useState("S");
-  let {setQuantity,setSize} = useContext(Contex);
+  let [count, setCount] = useState(1);
+  let [insize, setInsize] = useState("S");
+  let { setQuantity, setSize } = useContext(Contex);
 
-  let handlerDecrement = () =>{
+  let handlerDecrement = () => {
     setCount(count + 1);
   }
-  let handlerIncrement = () =>{
-    if(count > 1){
+  let handlerIncrement = () => {
+    if (count > 1) {
       setCount(count - 1);
     }
   }
-  let addtocartlist =()=>{
-    navigate(`/cart/${pid}`);
+  let addtocartlist = () => {
+    navigate(`/cart/${id}`);
     setQuantity(count);
     setSize(insize);
   }
-  let handlersize =()=>{
+  let handlersize = () => {
     setOpens(!opens);
   }
   return (
     <>
       <Container>
-        <Breadcumb className='mt-[83px] mb-[130px]' three='hidden'/>
+        <Breadcumb className='mt-[83px] mb-[130px]' three='hidden' />
         <div className="grid grid-cols-2 grid-rows-2 gap-10">
           <div className="">
-            {
-              items.map((data, index) => {
-                return <>
-                  {data.id == pid ?
-                    <>
-                      <img key={index} className='w-[780px] h-[780px] object-contain' src={data.images[0] ? data.images[0] : data.thumbnail} alt="aa" />
-                    </>
-                    : ""
 
-                  }
-                </>
-              })
+            {
+              singleproduct.map((data, index) => (
+                <img key={index} className='w-[780px] h-[780px] object-contain' src={data.images[0] ? data.images[0] : data.thumbnail} alt="aa" />
+              ))
             }
           </div>
           <div className="">
             {
-              items.map((data) => {
-                return <>
-                  {data.id == pid ?
-                    <>
-                      <img className='w-[780px] h-[780px] object-contain' src={data.images[1] ? data.images[1] : data.thumbnail} alt="" />
-                    </>
-                    : ""
-
-                  }
-                </>
-              })
+              singleproduct.map((data, index) => (
+                <img key={index} className='w-[780px] h-[780px] object-contain' src={data.images[1] ? data.images[1] : data.thumbnail} alt="" />
+              ))
             }
           </div>
           <div className="">
             {
-              items.map((data) => {
-                return <>
-                  {data.id == pid ?
-                    <>
-                      <img className='w-[780px] h-[780px] object-contain' src={data.images[2] ? data.images[2] : data.thumbnail} alt="" />
-                    </>
-                    : ""
-
-                  }
-                </>
-              })
+              singleproduct.map((data, index) => (
+                <img key={index} className='w-[780px] h-[780px] object-contain' src={data.images[2] ? data.images[2] : data.thumbnail} alt="" />
+              ))
             }
+
           </div>
           <div className="">
             {
-              items.map((data) => {
-                return <>
-                  {data.id == pid ?
-                    <>
-                      <img className='w-[780px] h-[780px] object-contain' src={data.images[3] ? data.images[3] : data.thumbnail} alt="" />
-                    </>
-                    : ""
-
-                  }
-                </>
-              })
+              singleproduct.map((data, index) => (
+                <img key={index} className='w-[780px] h-[780px] object-contain' src={data.images[3] ? data.images[3] : data.thumbnail} alt="" />
+              ))
             }
+
           </div>
         </div>
 
         <div className="productdetails mt-[66px]">
           <h1 className='font-bold text-[2.44rem] leading-none text-[#262626] font-dm capitalize'>
             {
-              items.map((data) => {
-                return <>
-                  {data.id == pid ?
-                    data.title
-                    : null
-
-
-                  }
-                </>
-              })
+              singleproduct.map((data) => (
+                data.title
+              ))
             }
           </h1>
-          
+
           <div className="mt-[15px] mb-[24px] flex gap-x-[25px] items-center">
             <div className="flex gap-x-[2px] items-center">
               <img className='w-[13px] h-[12px]' src={Star} alt="" />
@@ -145,32 +107,20 @@ const Product = () => {
             <p className='font-normal text-sm text-[#767676] font-dm capitalize'>{review.length} Review</p>
           </div>
           <div className="flex gap-x-[22px] mb-[26px] items-center">
-            <del className='font-normal text-base text-[#767676] font-dm'>$
+            <del className='font-normal flex items-center text-base text-[#767676] font-dm'>$
+
               {
-                items.map((data) => {
-                  return <>
-                    {data.id == pid ?
-                      data.price * 2
-                      : null
-
-
-                    }
-                  </>
-                })
+                singleproduct.map((data) => (
+                  data.price * 2
+                ))
               }
+
             </del>
-            <h1 className='font-bold text-xl text-[#262626] font-dm '>$
+            <h1 className='font-bold text-xl flex text-[#262626] font-dm '>$
               {
-                items.map((data) => {
-                  return <>
-                    {data.id == pid ?
-                      data.price
-                      : null
-
-
-                    }
-                  </>
-                })
+                singleproduct.map((data) => (
+                  data.price
+                ))
               }
             </h1>
           </div>
@@ -193,11 +143,11 @@ const Product = () => {
               <button onClick={handlersize} className="flex focus:outline-none relative items-center justify-center border-[1px] border-[#f0f0f0] w-36 h-9 gap-x-[76px] px-5">
                 <h3 className='font-normal text-base leading-[187%] text-[#767676] font-dm'>{insize}</h3>
                 <img src={Down} alt="" />
-                <div className={`absolute bg-[#fff] top-full left-0 w-full ${opens?"visible opacity-1":"invisible opacity-0"}`}>
-                  <button onClick={(e)=>{setInsize(e.target.value)}} value='S' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>S</button>
-                  <button onClick={(e)=>{setInsize(e.target.value)}} value='M' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>M</button>
-                  <button onClick={(e)=>{setInsize(e.target.value)}} value='L' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>L</button>
-                  <button onClick={(e)=>{setInsize(e.target.value)}} value='XL' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>XL</button>
+                <div className={`absolute bg-[#fff] top-full left-0 w-full ${opens ? "visible opacity-1" : "invisible opacity-0"}`}>
+                  <button onClick={(e) => { setInsize(e.target.value) }} value='S' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>S</button>
+                  <button onClick={(e) => { setInsize(e.target.value) }} value='M' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>M</button>
+                  <button onClick={(e) => { setInsize(e.target.value) }} value='L' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>L</button>
+                  <button onClick={(e) => { setInsize(e.target.value) }} value='XL' className='border hover:bg-teal-400 hover:border-teal-400 focus:outline-none py-1 w-full'>XL</button>
                 </div>
               </button>
             </div>
@@ -235,7 +185,7 @@ const Product = () => {
 
             <div className="reviews">
               {
-                review.map((data,index) => {
+                review.map((data, index) => {
                   return <div key={index}>
                     <hr className='bg-[#f0f0f0] mb-6' />
                     <div className="flex items-center gap-x-9">

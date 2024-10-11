@@ -4,33 +4,16 @@ import Breadcumb from '../layers/Breadcumb'
 import dot1 from '../../../public/dots.png'
 import dot2 from '../../../public/dots2.png'
 import Path from '../../../public/path.png'
-import Item2 from '../layers/Item2'
 import Paginate from '../layers/Paginate'
-import GetallData from '../../lib/GetallData'
 
 
-
-
-const Products = () => {
+const Productss = () => {
   let [itemperpage, setItemperpage] = useState(12);
   let [catagory, setCatagory] = useState("regular");
   let manegperpage = (element) => {
     setItemperpage(element.target.value);
   }
-  let [alldata, setAlldata] = useState([]);
-
-  useEffect(() => {
-    let getData = async () => {
-      let response = await fetch("https://dummyjson.com/products");
-      let data = await response.json();
-      let newdata = data.products;
-      setAlldata(newdata);
-    }
-    getData();
-  }, [])
-  console.log(alldata);
-
-let cat = ["beauty","furniture","fragrances","groceries"] ;
+  let catg = ["Regular", "Beauty", "Fragrances", "Furniture", "Groceries", "Electronic"];
   return (
     <>
       <Container>
@@ -41,8 +24,8 @@ let cat = ["beauty","furniture","fragrances","groceries"] ;
 
             <div className="mt-[35px] mb-[53px] flex flex-col gap-y-5">
               {
-                cat.map((item) => (
-                  <div className="flex items-center justify-between pb-[19px] border-b">
+                catg.map((item, index) => (
+                  <div key={index} className="flex items-center justify-between pb-[19px] border-b">
                     <h3 className='font-normal text-base leading-[187%] text-[#767676] font-dm'>{item}</h3>
                     <img src={Path} alt="" />
                   </div>
@@ -129,11 +112,17 @@ let cat = ["beauty","furniture","fragrances","groceries"] ;
                 <div className="flex gap-x-[14px] items-center">
                   <p className='font-normal text-base leading-[187%] text-[#767676] font-dm'>Sort by:</p>
                   <select onChange={(e) => { setCatagory(e.target.value); <Paginate /> }} name="" id="" className='capitalize border-none outline-none cursor-pointer px-[21px] pr-[120px] py-[3px] border border-[#F0F0F0] font-normal text-base leading-[187%] text-[#767676] font-dm'>
-                    <option value="regular">Regular</option>
+                    {/* <option value="regular">Regular</option>
                     <option value="beauty">beauty</option>
                     <option value="fragrances">fragrances</option>
                     <option value="furniture">furniture</option>
                     <option value="groceries">groceries</option>
+                    <option value="newp">NewP</option> */}
+                    {
+                      catg.map((data, index) => (
+                        <option key={index} value={data.toLowerCase()}>{data}</option>
+                      ))
+                    }
                   </select>
                 </div>
                 <div className="flex gap-x-[14px] items-center">
@@ -157,4 +146,4 @@ let cat = ["beauty","furniture","fragrances","groceries"] ;
   )
 }
 
-export default Products
+export default Productss

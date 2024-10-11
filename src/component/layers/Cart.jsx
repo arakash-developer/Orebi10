@@ -61,20 +61,20 @@ const Cart = () => {
                                 <img className='inline-block pl-5 pr-10' src={Close} alt="" />
                                 <div className="w-24 h-24">
                                     {
-                                        current.map((data) => (
-                                            <img className='w-full h-full object-cover' src={data.thumbnail} alt="" />
+                                        current.map((data,index) => (
+                                            <img key={index} className='w-full h-full object-cover' src={data.thumbnail} alt="" />
                                         ))
                                     }
                                 </div>
                                 {
-                                    current.map((data) => (
-                                        <h3 className='pl-5 font-bold text-base leading-[144%] text-[#262626] font-dm'>{data.title.slice(0, 15)}..</h3>
+                                    current.map((data,index) => (
+                                        <h3 key={index} className='pl-5 font-bold text-base leading-[144%] text-[#262626] font-dm'>{data.title.slice(0, 15)}..</h3>
                                     ))
                                 }
                             </div>
                             {
-                                current.map((data) => (
-                                    <h2 className='col-span-3 font-bold text-xl text-[#262626] font-dm'>{data.price} $</h2>
+                                current.map((data,index) => (
+                                    <h2 key={index} className='col-span-3 font-bold text-xl text-[#262626] font-dm'>{data.price} $</h2>
                                 ))
                             }
                             <div className='col-span-3 border-[1px] border-[#f0f0f0] w-36 h-9 grid grid-cols-3 items-center'>
