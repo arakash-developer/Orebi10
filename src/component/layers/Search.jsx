@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import Container from '../layers/Container'
 import Cata from '../../../public/cata.png'
-import watch from '../../../public/watch.png'
 import Searchi from '../../../public/search.png'
 import Cart from '../../../public/cart.png'
 import Down from '../../../public/down.png'
@@ -141,14 +140,12 @@ const Search = () => {
     // console.log(fileterProduct);
   }, [allproducts, search])
 
-  let [detail, setDetail] = useState([])
-  const { productId, quantity } = carts;
-  useEffect(() => {
-    let finddetails = allproducts.filter(item =>  item.id  === productId );
-    setDetail(finddetails)
-  }, [productId])
-  console.log(detail);
-  
+
+  carts.map((item) =>{
+    console.log(item);
+    
+  });
+
   return (
     <>
       <div className="bg-[#f5f5f3] hidden md:block sticky left-0 top-0 z-[9999]">
@@ -540,8 +537,9 @@ const Search = () => {
               <div className="absolute -left-[10px] top-full bg-[#262626] font-dm center text-[12px] h-5 w-6 rounded-full text-[#fff]">{totalquantity}</div>
               <div ref={cart} className="akash hidden absolute bg-[#FFFFFF] right-0  top-8 w-96 h-60 border box-border border-[#979797] z-[9999999]">
                 {
-                  carts.map((item,index) => (
-                    <SearchCartItem key={index} image={watch} />
+                  carts.map((item, index) =>
+                  (
+                    <SearchCartItem key={index} data={item} />
                   ))
                 }
                 <div className="pt-[14px] pl-[21px] bg-[#fff] pb-4">

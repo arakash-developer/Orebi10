@@ -12,7 +12,7 @@ const Item = ({ productTitle, productImg, productPrice, productTag, productColor
     let dispatch = useDispatch();
     let handleraddtoCart =(e)=>{
         e.preventDefault();
-        console.log(carts);
+        // console.log(carts);
         dispatch(addToCart({
             productId: productid,
             quantity: 1,
