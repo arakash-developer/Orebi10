@@ -19,6 +19,7 @@ import Products from './component/pages/Products';
 import Cart from './component/layers/Cart';
 import SignUp from './component/pages/SignUp';
 import Login from './component/pages/Login';
+import Redux from './component/pages/Redux';
 
 
 const router = createBrowserRouter(
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
       <Route path='/signup' element={<SignUp />}/>
       <Route path='/login' element={<Login />}/>
       <Route path='/account' element={<Home />}/>
+      <Route path='/redux' element={<Redux />}/>
       <Route path='*' element={<Error />}/>
     </Route>
   )

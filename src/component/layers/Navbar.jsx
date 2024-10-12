@@ -39,6 +39,7 @@ const navbar = () => {
                 <Li className='text-[#fff] md:text-[#767676]' liText='About' to='/faq'/>
                 <Li className='text-[#fff] md:text-[#767676]' liText='Contacts' to='/about'/>
                 <Li className='text-[#fff] md:text-[#767676]' liText='Journal' to='/contact'/>
+                <Li className='text-[#fff] md:text-[#767676]' liText='Redux' to='/redux'/>
               </ul>
           </div>
         </Container>
