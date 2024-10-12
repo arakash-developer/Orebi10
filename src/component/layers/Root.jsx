@@ -9,11 +9,11 @@ import Home from '../pages/Home'
 
 const Root = () => {
   return (
-    <> 
-        <Navbar />
-        <Search />
-        <Outlet />
-        <Footer/>
+    <>
+      <Navbar />
+      <Search />
+      <Outlet />
+      <Footer />
     </>
   )
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from 'react'
 import Container from '../layers/Container'
 import Cata from '../../../public/cata.png'
-import close from '../../../public/close.png'
 import watch from '../../../public/watch.png'
 import Searchi from '../../../public/search.png'
 import Cart from '../../../public/cart.png'
@@ -9,12 +8,11 @@ import Down from '../../../public/down.png'
 import Prof from '../../../public/prof.png'
 import { useNavigate } from 'react-router-dom'
 import SignLog from './SignLog'
-import { Contex } from '../../context/Quantity'
-
-
+import { useDispatch, useSelector } from 'react-redux'
+import SearchCartItem from './SearchCartItem'
 
 const Search = () => {
-  let [ layer1,setLayer1] = useState(true);
+  let [layer1, setLayer1] = useState(true);
   let [active, setActive] = useState(false);
   let [accesories, setAccesories] = useState(false);
   let [electronics, setElectronics] = useState(false);
@@ -25,41 +23,51 @@ const Search = () => {
   let navigate = useNavigate();
   let profile = useRef(null);
   let cart = useRef(null);
+  const carts = useSelector(state => state.cart.items);
+  let dispatch = useDispatch();
+  let [totalquantity, setTotalquantity] = useState(0)
+  useEffect(() => {
+    let total = 0
+    carts.forEach((item) => {
+      total += item.quantity
+    });
+    setTotalquantity(total)
+  }, [carts])
 
   let handlerAct2 = (id) => {
     setLayer1(!layer1);
     console.log(layer1);
-    if(id == 1){
-      if(layer1){
+    if (id == 1) {
+      if (layer1) {
         console.log("1");
         profile.current.classList.remove("hidden")
         profile.current.classList.add("flex")
       }
-      else{
+      else {
         profile.current.classList.remove("flex")
         profile.current.classList.add("hidden")
       }
     }
-    else{
+    else {
       profile.current.classList.remove("flex")
       profile.current.classList.add("hidden")
     }
-    if(id == 2){
-      if(layer1){
+    if (id == 2) {
+      if (layer1) {
         cart.current.classList.remove("hidden")
         cart.current.classList.add("block")
-      }else{
+      } else {
         cart.current.classList.remove("block")
         cart.current.classList.add("hidden")
       }
     }
-    else{
+    else {
       cart.current.classList.remove("block")
       cart.current.classList.add("hidden")
     }
   }
 
-  
+
 
 
   let handlerAct = () => {
@@ -114,10 +122,10 @@ const Search = () => {
 
   useEffect(() => {
     let getData = async () => {
-      let response = await fetch("https://dummyjson.com/products");
-      let data = await response.json();
-      let newdata = await data.products;
-      setAllProducts(await newdata);
+      let response = await fetch("https://dummyjson.com/products")
+      let data = await response.json()
+      let newdata = data.products
+      setAllProducts(newdata)
     }
     getData();
 
@@ -133,10 +141,19 @@ const Search = () => {
     // console.log(fileterProduct);
   }, [allproducts, search])
 
+  let [detail, setDetail] = useState([])
+  const { productId, quantity } = carts;
+  useEffect(() => {
+    let finddetails = allproducts.filter(item =>  item.id  === productId );
+    setDetail(finddetails)
+  }, [productId])
+  console.log(detail);
+  
   return (
     <>
-      <div className="bg-[#f5f5f3] hidden md:block">
-        <Container className="flex justify-between items-center py-6 relative">
+      <div className="bg-[#f5f5f3] hidden md:block sticky left-0 top-0 z-[9999]">
+        {/* py-6 defaul */}
+        <Container className="flex justify-between items-center py-2 relative">
           {
             active ?
               <div className="megamenu  absolute h-[343px] top-[102px] z-10 flex ">
@@ -503,43 +520,37 @@ const Search = () => {
 
           <div className="flex items-center gap-x-10">
             <div type='button' className="relative cursor-pointer">
-              <button className="flex items-center gap-x-[10px] focus:outline-none" onClick={()=>handlerAct2(1)}>
+              <button className="flex items-center gap-x-[10px] focus:outline-none" onClick={() => handlerAct2(1)}>
                 <img src={Prof} alt="" />
                 <img className='down' src={Down} alt="" />
               </button>
 
-                  <div ref={profile} className="akash hidden border w-[200px] flex-col items-center absolute right-0 top-8 z-[999999] profile">
-                    <SignLog />
-                  </div>
+              <div ref={profile} className="akash hidden border w-[200px] flex-col items-center absolute right-0 top-8 z-[999999] profile">
+                <SignLog />
+              </div>
 
             </div>
             <div className="relative">
               <div className="wrap">
-                <button className='focus:outline-none' onClick={()=>handlerAct2(2)}>
+                <button className='focus:outline-none' onClick={() => handlerAct2(2)}>
                   <img src={Cart} alt="" />
                 </button>
               </div>
-            
-                  <div ref={cart} className="akash hidden absolute bg-[#FFFFFF] right-0  top-8 w-96 h-60 border box-border border-[#979797]  z-[9999]">
-                    <div className=" bg-[#F5F5F3] h-[120px] flex justify-center items-center">
-                      <div className="h-[80px] flex gap-x-5">
-                        <img src={watch} alt="" />
-                        <div className="flex items-center gap-x-[80px]">
-                          <div className="">
-                            <h3 className='font-bold text-sm text-[#262626] font-dm'>Black Smart Watch</h3>
-                            <h3 className='font-bold text-sm text-[#262626] font-dm'>$44.00</h3>
-                          </div>
-                          <img src={close} alt="" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="pt-[14px] pl-[21px]">
-                      <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>$44.00</span></h3>
-                      <button className='w-36 h-12 border-2 border-[#2B2B2B] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
-                      <button className='w-36 h-12 ml-[21px] bg-[#262626] font-bold text-sm text-[#fff] font-dm'>Checkout</button>
-                    </div>
-                  </div>
-        
+
+              <div className="absolute -left-[10px] top-full bg-[#262626] font-dm center text-[12px] h-5 w-6 rounded-full text-[#fff]">{totalquantity}</div>
+              <div ref={cart} className="akash hidden absolute bg-[#FFFFFF] right-0  top-8 w-96 h-60 border box-border border-[#979797] z-[9999999]">
+                {
+                  carts.map((item,index) => (
+                    <SearchCartItem key={index} image={watch} />
+                  ))
+                }
+                <div className="pt-[14px] pl-[21px] bg-[#fff] pb-4">
+                  <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>$44.00</span></h3>
+                  <button className='w-36 h-12 border-2 border-[#2B2B2B] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
+                  <button className='w-36 h-12 ml-[21px] bg-[#262626] font-bold text-sm text-[#fff] font-dm'>Checkout</button>
+                </div>
+              </div>
+
             </div>
           </div>
 

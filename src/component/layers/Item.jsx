@@ -8,10 +8,11 @@ import { addToCart } from '../../features/cart/CartSlice';
 
 const Item = ({ productTitle, productImg, productPrice, productTag, productColor, productid, className }) => {
     const carts = useSelector(state => state.cart.items);
-    console.log(carts);
     const navigate = useNavigate();
     let dispatch = useDispatch();
-    let handleraddtoCart =()=>{
+    let handleraddtoCart =(e)=>{
+        e.preventDefault();
+        console.log(carts);
         dispatch(addToCart({
             productId: productid,
             quantity: 1,

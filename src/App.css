@@ -8,3 +8,6 @@
 .slick-slider img.my{
     display: inline-block;
 }
+.center{
+    @apply flex justify-center items-center
+}

@@ -17,7 +17,7 @@ const navbar = () => {
   }
   return (
     <>
-      <nav className='py-8'>
+      <nav className='py-8 bg-[#fff]'>
         <Container className='relative flex items-center justify-between'>
           <div className="flex items-center w-full">
               <div className="flex items-center justify-between w-full md:block md:w-auto">
