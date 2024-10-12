@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import Container from '../layers/Container'
 import Cata from '../../../public/cata.png'
 import close from '../../../public/close.png'
@@ -7,41 +7,63 @@ import Searchi from '../../../public/search.png'
 import Cart from '../../../public/cart.png'
 import Down from '../../../public/down.png'
 import Prof from '../../../public/prof.png'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import SignLog from './SignLog'
+import { Contex } from '../../context/Quantity'
 
 
 
 const Search = () => {
+  let [ layer1,setLayer1] = useState(true);
   let [active, setActive] = useState(false);
-  let [active2, setActive2] = useState(false);
   let [accesories, setAccesories] = useState(false);
   let [electronics, setElectronics] = useState(false);
   let [furniture, setFurniture] = useState(false);
   let [clothes, setClothes] = useState(false);
   let [bags, setBags] = useState(false);
   let [appliances, setappliances] = useState(false);
-  let none = "none";
-  let [dnone, dsetNone] = useState(none);
   let navigate = useNavigate();
+  let profile = useRef(null);
+  let cart = useRef(null);
 
-  let flag = 0;
-  let profile = () => {
-    if (flag == 0) {
-      let flex = "flex";
-      dsetNone(flex);
-      flag = 1;
-    } else {
-      dsetNone(none);
-      flag = 0;
+  let handlerAct2 = (id) => {
+    setLayer1(!layer1);
+    console.log(layer1);
+    if(id == 1){
+      if(layer1){
+        console.log("1");
+        profile.current.classList.remove("hidden")
+        profile.current.classList.add("flex")
+      }
+      else{
+        profile.current.classList.remove("flex")
+        profile.current.classList.add("hidden")
+      }
+    }
+    else{
+      profile.current.classList.remove("flex")
+      profile.current.classList.add("hidden")
+    }
+    if(id == 2){
+      if(layer1){
+        cart.current.classList.remove("hidden")
+        cart.current.classList.add("block")
+      }else{
+        cart.current.classList.remove("block")
+        cart.current.classList.add("hidden")
+      }
+    }
+    else{
+      cart.current.classList.remove("block")
+      cart.current.classList.add("hidden")
     }
   }
 
+  
+
+
   let handlerAct = () => {
     setActive(!active);
-  }
-  let handlerAct2 = () => {
-    setActive2(!active2);
   }
   let electronicsfn = () => {
     setElectronics(!electronics);
@@ -481,25 +503,24 @@ const Search = () => {
 
           <div className="flex items-center gap-x-10">
             <div type='button' className="relative cursor-pointer">
-              <button className="flex items-center gap-x-[10px] focus:outline-none" onClick={profile}>
+              <button className="flex items-center gap-x-[10px] focus:outline-none" onClick={()=>handlerAct2(1)}>
                 <img src={Prof} alt="" />
                 <img className='down' src={Down} alt="" />
               </button>
-              
-              <div className="border w-[200px] flex flex-col items-center absolute right-0 top-8 z-[999999] profile" style={{ display: dnone }}>
-                <SignLog />
-              </div>
+
+                  <div ref={profile} className="akash hidden border w-[200px] flex-col items-center absolute right-0 top-8 z-[999999] profile">
+                    <SignLog />
+                  </div>
 
             </div>
             <div className="relative">
               <div className="wrap">
-                <button className='focus:outline-none' onClick={handlerAct2}>
+                <button className='focus:outline-none' onClick={()=>handlerAct2(2)}>
                   <img src={Cart} alt="" />
                 </button>
               </div>
-              {
-                active2 ?
-                  <div className="absolute bg-[#FFFFFF] right-0  top-8 w-96 h-60 border box-border border-[#979797]  z-[9999]">
+            
+                  <div ref={cart} className="akash hidden absolute bg-[#FFFFFF] right-0  top-8 w-96 h-60 border box-border border-[#979797]  z-[9999]">
                     <div className=" bg-[#F5F5F3] h-[120px] flex justify-center items-center">
                       <div className="h-[80px] flex gap-x-5">
                         <img src={watch} alt="" />
@@ -518,8 +539,7 @@ const Search = () => {
                       <button className='w-36 h-12 ml-[21px] bg-[#262626] font-bold text-sm text-[#fff] font-dm'>Checkout</button>
                     </div>
                   </div>
-                  : ""
-              }
+        
             </div>
           </div>
 

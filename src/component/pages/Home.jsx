@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import Db from '../../db.json'
 //Component
 import Container from '../layers/Container'
@@ -6,7 +6,6 @@ import Item from '../layers/Item';
 import Slider from "react-slick";
 import Bannar from "../layers/Bannar";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
-
 //Adds
 import Add1 from '../../../public/Adds/add1.jpg';
 import Add2 from '../../../public/Adds/add2.png';
@@ -15,7 +14,6 @@ import Add3 from '../../../public/Adds/add3.png';
 import gladd1 from '../../../public/galleryadd/gladd1.jpg';
 import gladd2 from '../../../public/galleryadd/galadd2.jpg';
 import gladd3 from '../../../public/galleryadd/galadd3.png';
-
 const Home = () => {
   // const navigate = useNavigate();
   let [bestseller, setBestseller] = useState([]);
