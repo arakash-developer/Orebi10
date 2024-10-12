@@ -14,6 +14,7 @@ import Add3 from '../../../public/Adds/add3.png';
 import gladd1 from '../../../public/galleryadd/gladd1.jpg';
 import gladd2 from '../../../public/galleryadd/galadd2.jpg';
 import gladd3 from '../../../public/galleryadd/galadd3.png';
+
 const Home = () => {
   // const navigate = useNavigate();
   let [bestseller, setBestseller] = useState([]);
