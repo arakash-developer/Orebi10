@@ -32,8 +32,15 @@ const Product = () => {
     getdata();
   }, [])
 
-
-  let [count, setCount] = useState(carts[0].quantity);
+  
+  // let mew = carts.filter((item)=>{
+  //   return item.productId == id;
+  // }) 
+  // console.log(mew);
+  
+  
+  
+  const [count, setCount] = useState(1);
   let [insize, setInsize] = useState("S");
   let { setSize } = useContext(Contex);
 
@@ -50,7 +57,7 @@ const Product = () => {
     e.preventDefault();
     dispatch(addToCart({
       productId : Number(id),
-      quantity: count - carts[0].quantity,
+      quantity: count ,
       price : singleproduct[0].price,
     }))
     setSize(insize);
