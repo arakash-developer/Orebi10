@@ -6,7 +6,7 @@ import Star from '../../../public/Star.png'
 import Breadcumb from '../layers/Breadcumb';
 import { Contex } from '../../context/Quantity'
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, changeQuantity } from '../../features/cart/CartSlice';
+import { addToCart } from '../../features/cart/CartSlice';
 
 const Product = () => {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const Product = () => {
   }, [])
 
 
-  let [count, setCount] = useState(1);
+  let [count, setCount] = useState(carts[0].quantity);
   let [insize, setInsize] = useState("S");
   let { setSize } = useContext(Contex);
 
@@ -47,8 +47,14 @@ const Product = () => {
   }
 
   let addtocartlist = (e) => {
-    navigate(`/cart`);
+    e.preventDefault();
+    dispatch(addToCart({
+      productId : Number(id),
+      quantity: count - carts[0].quantity,
+      price : singleproduct[0].price,
+    }))
     setSize(insize);
+    navigate(`/cart`);
   }
   let handlersize = () => {
     setOpens(!opens);
