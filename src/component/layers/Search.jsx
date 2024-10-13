@@ -551,8 +551,8 @@ const Search = () => {
                       <>
                         <div>
                           <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>{totalAm.toFixed(2)}$</span></h3>
-                          <button className='w-36 h-12 border-2 border-[#2B2B2B] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
-                          <button className='w-36 h-12 ml-[21px] bg-[#262626] font-bold text-sm text-[#fff] font-dm'>Checkout</button>
+                          <button onClick={()=>{navigate('/cart')}} className='w-36 h-12 border-2 border-[#2B2B2B] hover:bg-[#262626] hover:text-[#fff] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
+                          <button className='w-36 h-12 ml-[21px] border-2 border-[#2B2B2B] hover:bg-[#262626] hover:text-[#fff] font-bold text-sm text-[#262626] font-dm'>Checkout</button>
                         </div>
                       </>
                       :
