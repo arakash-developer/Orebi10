@@ -17,7 +17,7 @@ const ShoppingCart = () => {
         setOpens(!opens);
     }
     let totalAm = carts.reduce((prev, curr) => {
-        return prev + curr.price * curr.quantity
+        return prev + curr?.price * curr?.quantity
       }, 0)
 
     return (

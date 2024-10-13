@@ -5,14 +5,18 @@ import Down from '../../../public/down3.png'
 import Star from '../../../public/Star.png'
 import Breadcumb from '../layers/Breadcumb';
 import { Contex } from '../../context/Quantity'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart, changeQuantity } from '../../features/cart/CartSlice';
 
 const Product = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   let [opens, setOpens] = useState(false);
   let [items, setItems] = useState([]);
   let [singleproduct, setSingleProduct] = useState([]);
   let [review, setReview] = useState([]);
   let { id } = useParams();
+  const carts = useSelector(state => state.cart.items);
   useEffect(() => {
     let getdata = async () => {
       let response = await fetch("https://dummyjson.com/products");
@@ -31,24 +35,25 @@ const Product = () => {
 
   let [count, setCount] = useState(1);
   let [insize, setInsize] = useState("S");
-  let { setQuantity, setSize } = useContext(Contex);
+  let { setSize } = useContext(Contex);
 
   let handlerDecrement = () => {
-    setCount(count + 1);
-  }
-  let handlerIncrement = () => {
     if (count > 1) {
       setCount(count - 1);
     }
   }
-  let addtocartlist = () => {
+  let handlerIncrement = () => {
+    setCount(count + 1);
+  }
+
+  let addtocartlist = (e) => {
     navigate(`/cart`);
-    setQuantity(count);
     setSize(insize);
   }
   let handlersize = () => {
     setOpens(!opens);
   }
+
   return (
     <>
       <Container>
@@ -154,9 +159,9 @@ const Product = () => {
             <div className="mb-[30px] flex gap-x-[28px] items-center">
               <h3 className='font-dm uppercase font-bold text-base leading-[144%] text-[#262626]'>count:</h3>
               <div className="border-[1px] border-[#f0f0f0] w-36 h-9 grid grid-cols-3 items-center">
-                <button onClick={handlerIncrement} className='font-normal text-base leading-[187%] text-[#767676] font-dm'>-</button>
+                <button onClick={handlerDecrement} className='font-normal text-base leading-[187%] text-[#767676] font-dm'>-</button>
                 <h3 className='font-normal text-center text-base leading-[187%] text-[#767676] font-dm'>{count}</h3>
-                <button onClick={handlerDecrement} className='font-normal border-none text-base leading-[187%] text-[#767676] font-dm'>+</button>
+                <button onClick={handlerIncrement} className='font-normal border-none text-base leading-[187%] text-[#767676] font-dm'>+</button>
               </div>
             </div>
             <hr className='bg-[#f0f0f0] mb-5' />

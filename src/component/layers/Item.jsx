@@ -17,6 +17,7 @@ const Item = ({ productTitle, productImg, productPrice, productTag, productColor
             productId: productid,
             quantity: 1,
             price:productPrice,
+
         }))
     }
     
