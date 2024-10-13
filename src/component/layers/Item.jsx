@@ -16,6 +16,7 @@ const Item = ({ productTitle, productImg, productPrice, productTag, productColor
         dispatch(addToCart({
             productId: productid,
             quantity: 1,
+            price:productPrice,
         }))
     }
     

@@ -35,7 +35,6 @@ const Search = () => {
 
   let handlerAct2 = (id) => {
     setLayer1(!layer1);
-    console.log(layer1);
     if (id == 1) {
       if (layer1) {
         console.log("1");
@@ -140,11 +139,13 @@ const Search = () => {
     // console.log(fileterProduct);
   }, [allproducts, search])
 
+  // console.log(carts);
 
-  carts.map((item) =>{
-    console.log(item);
-    
-  });
+  let totalAm = carts.reduce((prev, curr) => {
+    return prev + curr.price * curr.quantity
+  }, 0)
+
+  // console.log(carts);
 
   return (
     <>
@@ -535,17 +536,33 @@ const Search = () => {
               </div>
 
               <div className="absolute -left-[10px] top-full bg-[#262626] font-dm center text-[12px] h-5 w-6 rounded-full text-[#fff]">{totalquantity}</div>
-              <div ref={cart} className="akash hidden absolute bg-[#FFFFFF] right-0  top-8 w-96 h-60 border box-border border-[#979797] z-[9999999]">
-                {
-                  carts.map((item, index) =>
-                  (
-                    <SearchCartItem key={index} data={item} />
-                  ))
-                }
-                <div className="pt-[14px] pl-[21px] bg-[#fff] pb-4">
-                  <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>$44.00</span></h3>
-                  <button className='w-36 h-12 border-2 border-[#2B2B2B] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
-                  <button className='w-36 h-12 ml-[21px] bg-[#262626] font-bold text-sm text-[#fff] font-dm'>Checkout</button>
+              <div ref={cart} className={`akash hidden absolute bg-[#fff] right-0  top-8 w-96  border box-border border-[#979797] z-[9999999]`}>
+                <div className={`${totalAm > 0 ? "max-h-72":"h-0"} overflow-y-scroll w-full cursor-pointer`}>
+                  {
+                    carts.map((item, index) =>
+                    (
+                      <SearchCartItem key={index} data={item} />
+                    ))
+                  }
+                </div>
+                <div className={`pt-[14px] pl-[21px] pb-4`}>
+                  {
+                    totalAm > 0 ?
+                      <>
+                        <div>
+                          <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>{totalAm.toFixed(2)}$</span></h3>
+                          <button className='w-36 h-12 border-2 border-[#2B2B2B] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
+                          <button className='w-36 h-12 ml-[21px] bg-[#262626] font-bold text-sm text-[#fff] font-dm'>Checkout</button>
+                        </div>
+                      </>
+                      :
+                      <>
+                        <div>
+                          <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] capitalize font-dm'> Please Shopping... <span className='font-bold text-[#262626]'>0 items in your cart</span></h3>
+                          <h3 className='pb-[13px] text-base leading-[144%] capitalize font-dm font-bold text-[#262626]'> Happy Shopping...</h3>
+                        </div>
+                      </>
+                  }
                 </div>
               </div>
 

@@ -42,7 +42,7 @@ const Product = () => {
     }
   }
   let addtocartlist = () => {
-    navigate(`/cart/${id}`);
+    navigate(`/cart`);
     setQuantity(count);
     setSize(insize);
   }
