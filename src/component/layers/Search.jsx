@@ -149,7 +149,7 @@ const Search = () => {
 
   return (
     <>
-      <div className="bg-[#f5f5f3] hidden md:block sticky left-0 top-0 z-[9999]">
+      <div className="bg-[#f5f5f3]  md:block sticky left-0 top-0 z-[9999]">
         {/* py-6 defaul */}
         <Container className="flex justify-between items-center py-2 relative">
           {
@@ -507,11 +507,11 @@ const Search = () => {
           }
           <div className="flex gap-x-3 items-center cursor-pointer" onClick={handlerAct} type='button'>
             <button className='flex gap-x-3 items-center outline-none focus:outline-none'>
-              <span><img src={Cata} alt="" /></span>
-              <h4 className='font-normal text-sm text-[#262626] font-dm'>Shop by Category</h4>
+              <span className='md:pr-0 pr-1'><img src={Cata} alt="" /></span>
+              <h4 className='font-normal text-sm text-[#262626] font-dm md:block hidden'>Shop by Category</h4>
             </button>
           </div>
-          <div className="flex bg-[#fff] py-4 px-[21px] gap-x-2 items-center w-[600px]">
+          <div className="flex bg-[#fff] md:py-5 py-3 px-[21px] mx-1 md:mx-0 gap-x-2 items-center max:w-[600px] md:w-[500px] lg:w-[600px]">
             <input value={search} onChange={handlerSearch} className='font-normal text-sm w-full text-[#c4c4c4] font-dm outline-none' type="text" placeholder='Search Product' />
             <img className='cursor-pointer' src={Searchi} alt="a" />
           </div>
@@ -535,7 +535,7 @@ const Search = () => {
                 </button>
               </div>
 
-              <div className="absolute -left-[10px] top-full bg-[#262626] font-dm center text-[12px] h-5 w-6 rounded-full text-[#fff]">{totalquantity}</div>
+              <div className="absolute -left-[10px] top-[11px] bg-[#262626] font-dm center text-[12px] h-5 w-5 rounded-full text-[#fff]">{totalquantity}</div>
               <div ref={cart} className={`akash hidden absolute bg-[#fff] right-0  top-8 w-96  border box-border border-[#979797] z-[9999999]`}>
                 <div className={`${totalAm > 0 ? "max-h-72":"h-0"} overflow-y-scroll w-full cursor-pointer`}>
                   {

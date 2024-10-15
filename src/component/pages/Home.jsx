@@ -83,8 +83,6 @@ const Home = () => {
   const settings = {
     dots: false,
     arrows: true,
-    // infinite: true,
-    // speed: 400,
     slidesToShow: 4,
     slidesToScroll: 4,
     prevArrow: <SamplePrevArrow />,
@@ -118,13 +116,13 @@ const Home = () => {
   const settings2 = {
     dots: false,
     arrows: false,
-    infinite: false,
-    speed: 400,
     slidesToShow: 4,
     slidesToScroll: 4,
+    prevArrow: <SamplePrevArrow />,
+    nextArrow: <SampleNextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -148,6 +146,8 @@ const Home = () => {
       }
     ]
   };
+
+
   const settings3 = {
     dots: false,
     arrows: false,
@@ -240,8 +240,8 @@ const Home = () => {
         <Container>
           <h1 className='py-[48px] font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>New Arrivals</h1>
         </Container>
-        <div className="itembox mb-[217px]">
-          <Container className='2xl:max-w-[1640px] max-w-[1616px]'>
+        <div className="itembox md:mb-[217px] mb-4">
+          <Container className='max-w-[1616px]'>
             <Slider {...settings}>
               {
                 allproducts?.map((item) => (
@@ -261,31 +261,35 @@ const Home = () => {
         </div>
       </div>
 
-      <Container>
 
-        <div className="bestSeller">
+      <div className="bestSeller">
+        <Container>
           <h1 className='pb-[48px] w-full font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>Our Bestsellers</h1>
-          <div className="itembox mb-[217px]">
+        </Container>
+        <div className="itembox md:mb-[217px] mb-4">
+          <Container className='max-w-[1616px]'>
             <Slider {...settings2}>
               {
-                bestseller?.map((item) => (
+                allproducts?.map((item) => (
                   item ?
-                    <Item key={item.id}
+                    <Item key={item.id} className='w-full 2xl:px-[20px] xl:px-2 px-2'
                       productid={item.id}
                       productTitle={item.title}
-                      productImg={item.image}
+                      productImg={item.thumbnail}
                       productPrice={item.price}
-                      productTag={item.tag}
-                      productColor={item.color}
+                      productTag={item.discountPercentage}
+                      productColor={item.brand}
                     /> : null
-
                 ))
               }
             </Slider>
-          </div>
+          </Container>
         </div>
+      </div>
 
-        <div className="newslatter h-[370px] w-full mb-[128px] cursor-pointer">
+
+      <Container>
+        <div className="newslatter w-full md:mt-[130px] md:mb-[128px] mb-5 cursor-pointer">
           <Slider {...settings3}>
             {
               add?.map((item) => (
@@ -296,29 +300,32 @@ const Home = () => {
             }
           </Slider>
         </div>
-        <div className="special_offer">
-          <h1 className='pb-[48px] font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>Special Offers</h1>
-          <div className="itembox mb-[217px]">
+      </Container>
+
+      <div className="special">
+        <Container>
+          <h1 className='pb-[48px] w-full font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>Special Product</h1>
+        </Container>
+        <div className="itembox md:mb-[217px] mb-4">
+          <Container className='max-w-[1616px]'>
             <Slider {...settings2}>
               {
-                specials?.map((item) => (
+                allproducts?.map((item) => (
                   item ?
-                    <Item key={item.id}
+                    <Item key={item.id} className='w-full 2xl:px-[20px] xl:px-2 px-2'
                       productid={item.id}
                       productTitle={item.title}
-                      productImg={item.image}
+                      productImg={item.thumbnail}
                       productPrice={item.price}
-                      productTag={item.tag}
-                      productColor={item.color}
+                      productTag={item.discountPercentage}
+                      productColor={item.brand}
                     /> : null
-
                 ))
               }
             </Slider>
-          </div>
+          </Container>
         </div>
-
-      </Container>
+      </div>
     </>
   )
 }
