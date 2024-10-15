@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Db from '../../db.json'
 //Component
 import Container from '../layers/Container'
@@ -14,6 +14,7 @@ import Add3 from '../../../public/Adds/add3.png';
 import gladd1 from '../../../public/galleryadd/gladd1.jpg';
 import gladd2 from '../../../public/galleryadd/galadd2.jpg';
 import gladd3 from '../../../public/galleryadd/galadd3.png';
+import New from '../layers/New';
 
 const Home = () => {
   // const navigate = useNavigate();
@@ -23,20 +24,20 @@ const Home = () => {
     {
       id: 1,
       add: Add1,
-      status:true,
+      status: true,
     },
     {
       id: 2,
       add: Add2,
-      status:true,
+      status: true,
     },
     {
       id: 3,
       add: Add3,
-      status:true,
+      status: true,
     },
   ]
-  
+
   useEffect(
     () => {
       Db.reverse();
@@ -50,34 +51,34 @@ const Home = () => {
   useEffect(
     () => {
       Db.reverse();
-    },[]);
+    }, []);
 
 
-    function SampleNextArrow(props) {
-      const { className, style, onClick } = props;
-      return (
-        <div
-          className='absolute right-0 top-[153px] z-10 h-[64px] w-[64px] rounded-full justify-center items-center bg-[#00000038] text-[#fff] cursor-pointer'
-          style={{ ...style, display: "flex"}}
-          onClick={onClick}
-        >
-          <FaLongArrowAltRight />
-        </div>
-      );
-    }
-    
-    function SamplePrevArrow(props) {
-      const { className, style, onClick } = props;
-      return (
-        <div
-          className='absolute left-0 top-[153px] z-10 h-[64px] w-[64px] rounded-full justify-center items-center bg-[#00000038] text-[#fff] cursor-pointer'
-          style={{ ...style, display: "flex"}}
-          onClick={onClick}
-        >
-          <FaLongArrowAltLeft />
-        </div>
-      );
-    }
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className='absolute right-5  top-[153px] z-10 h-[64px] w-[64px] rounded-full justify-center items-center bg-[#00000038] text-[#fff] cursor-pointer'
+        style={{ ...style, display: "flex" }}
+        onClick={onClick}
+      >
+        <FaLongArrowAltRight />
+      </div>
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className='absolute left-5 top-[153px] z-10 h-[64px] w-[64px] rounded-full justify-center items-center bg-[#00000038] text-[#fff] cursor-pointer'
+        style={{ ...style, display: "flex" }}
+        onClick={onClick}
+      >
+        <FaLongArrowAltLeft />
+      </div>
+    );
+  }
 
   const settings = {
     dots: false,
@@ -90,7 +91,7 @@ const Home = () => {
     nextArrow: <SampleNextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -183,18 +184,18 @@ const Home = () => {
       }
     ]
   };
-  
-  let [allproducts,setAllProducts] = useState([]);
-  useEffect(()=>{
-    let getData = async () =>{
+
+  let [allproducts, setAllProducts] = useState([]);
+  useEffect(() => {
+    let getData = async () => {
       let response = await fetch("https://dummyjson.com/products");
       let data = await response.json();
       let newdata = await data.products;
       setAllProducts(newdata);
     }
     getData();
-  },[])
-  
+  }, [])
+
   return (
     <>
       <Bannar />
@@ -220,7 +221,8 @@ const Home = () => {
           </div>
         </Container>
       </div>
-      <Container>
+
+      <Container className=''>
         <div className="gallery mt-[174px] grid grid-cols-2 grid-rows-2 gap-[40px] cursor-pointer">
           <div className="row-span-2">
             <img src={gladd1} alt="" />
@@ -232,36 +234,34 @@ const Home = () => {
             <img src={gladd3} alt="" />
           </div>
         </div>
-        </Container>
+      </Container>
 
-        <div className="arrivals mt-[128px]">
-          <Container>
-          <h1 className='py-[48px] font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>New Arrivals</h1>
-          </Container>
-          <div className="itembox mb-[217px]">
-            <div className="main_product">
-              <Container className=''>
-              <Slider {...settings}>
-                {
-                  allproducts?.map((item) => (
-                    item ?
-                      <Item key={item.id} className=''
-                        productid={item.id}
-                        productTitle={item.title}
-                        productImg={item.thumbnail}
-                        productPrice={item.price}
-                        productTag={item.discountPercentage}
-                        productColor={item.brand}
-                      /> : null
-                  ))
-                }
-              </Slider>
-              </Container>
-            </div>
-          </div>
-        </div>
-
+      <div className="arrivals mt-[128px]">
         <Container>
+          <h1 className='py-[48px] font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>New Arrivals</h1>
+        </Container>
+        <div className="itembox mb-[217px]">
+          <Container className='max-w-[1664px]'>
+            <Slider {...settings}>
+              {
+                allproducts?.map((item) => (
+                  item ?
+                    <Item key={item.id} className='w-full'
+                      productid={item.id}
+                      productTitle={item.title}
+                      productImg={item.thumbnail}
+                      productPrice={item.price}
+                      productTag={item.discountPercentage}
+                      productColor={item.brand}
+                    /> : null
+                ))
+              }
+            </Slider>
+          </Container>
+        </div>
+      </div>
+
+      <Container>
 
         <div className="bestSeller">
           <h1 className='pb-[48px] w-full font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>Our Bestsellers</h1>
@@ -284,13 +284,14 @@ const Home = () => {
             </Slider>
           </div>
         </div>
+
         <div className="newslatter h-[370px] w-full mb-[128px] cursor-pointer">
           <Slider {...settings3}>
             {
               add?.map((item) => (
-                item.status ? 
-                <img key={item.id} className="h-full w-full" src={item.add} alt="" />
-                : null
+                item.status ?
+                  <img key={item.id} className="h-full w-full" src={item.add} alt="" />
+                  : null
               ))
             }
           </Slider>
