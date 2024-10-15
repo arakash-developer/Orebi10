@@ -511,7 +511,7 @@ const Search = () => {
               <h4 className='font-normal text-sm text-[#262626] font-dm md:block hidden'>Shop by Category</h4>
             </button>
           </div>
-          <div className="flex bg-[#fff] md:py-5 py-3 px-[21px] mx-1 md:mx-0 gap-x-2 items-center max:w-[600px] md:w-[500px] lg:w-[600px]">
+          <div className="flex bg-[#fff] md:py-5 py-3 px-[21px] mx-1 md:mx-0 gap-x-2 items-center sm:w-[500px]  md:w-[500px] lg:w-[600px]">
             <input value={search} onChange={handlerSearch} className='font-normal text-sm w-full text-[#c4c4c4] font-dm outline-none' type="text" placeholder='Search Product' />
             <img className='cursor-pointer' src={Searchi} alt="a" />
           </div>
