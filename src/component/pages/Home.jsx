@@ -238,7 +238,7 @@ const Home = () => {
 
       <div className="arrivals md:mt-[128px]">
         <Container>
-          <h1 className='py-[48px] font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>New Arrivals</h1>
+          <h1 className='md:py-[48px] py-4 font-bold md:text-[2.44rem] text-[20px] leading-none text-[#262626] font-dm'>New Arrivals</h1>
         </Container>
         <div className="itembox md:mb-[217px] mb-4">
           <Container className='max-w-[1616px]'>
@@ -264,7 +264,7 @@ const Home = () => {
 
       <div className="bestSeller">
         <Container>
-          <h1 className='pb-[48px] w-full font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>Our Bestsellers</h1>
+          <h1 className='md:pb-[48px] pb-4 w-full font-bold text-[20px] md:text-[2.44rem] leading-none text-[#262626] font-dm'>Our Bestsellers</h1>
         </Container>
         <div className="itembox md:mb-[217px] mb-4">
           <Container className='max-w-[1616px]'>
@@ -304,7 +304,7 @@ const Home = () => {
 
       <div className="special">
         <Container>
-          <h1 className='pb-[48px] w-full font-bold text-[2.44rem] leading-none text-[#262626] font-dm'>Special Product</h1>
+          <h1 className='md:pb-[48px] pb-4 w-full font-bold text-[20px] md:text-[2.44rem] leading-none text-[#262626] font-dm'>Special Product</h1>
         </Container>
         <div className="itembox md:mb-[217px] mb-4">
           <Container className='max-w-[1616px]'>

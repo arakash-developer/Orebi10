@@ -517,8 +517,8 @@ const Search = () => {
           </div>
 
           <div className="flex items-center gap-x-10">
-            <div type='button' className="relative cursor-pointer">
-              <button className="flex items-center gap-x-[10px] focus:outline-none" onClick={() => handlerAct2(1)}>
+            <div className="relative cursor-pointer">
+              <button type='button' className="flex items-center gap-x-[10px] focus:outline-none cursor-pointer" onClick={() => handlerAct2(1)}>
                 <img src={Prof} alt="" />
                 <img className='down' src={Down} alt="" />
               </button>
