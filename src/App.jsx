@@ -40,6 +40,7 @@ const router = createBrowserRouter(
       <Route path='/login' element={<Login />}/>
       <Route path='/account' element={<Home />}/>
       <Route path='/redux' element={<Redux />}/>
+      <Route path='/contact' element={<Contact />}/>
       <Route path='*' element={<Error />}/>
     </Route>
   )
