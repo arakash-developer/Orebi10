@@ -13,6 +13,8 @@ import SearchCartItem from './SearchCartItem'
 const Search = () => {
   let [layer1, setLayer1] = useState(true);
   let [active, setActive] = useState(false);
+  let [profileStatus, setProfileStatus] = useState(false);
+  let [CartStatus, setCartStatus] = useState(false);
   let [accesories, setAccesories] = useState(false);
   let [electronics, setElectronics] = useState(false);
   let [furniture, setFurniture] = useState(false);
@@ -20,7 +22,7 @@ const Search = () => {
   let [bags, setBags] = useState(false);
   let [appliances, setappliances] = useState(false);
   let navigate = useNavigate();
-  let profile = useRef(null);
+
   let cart = useRef(null);
   const carts = useSelector(state => state.cart.items);
   let dispatch = useDispatch();
@@ -33,36 +35,11 @@ const Search = () => {
     setTotalquantity(total)
   }, [carts])
 
+
+
+
   let handlerAct2 = (id) => {
-    setLayer1(!layer1);
-    if (id == 1) {
-      if (layer1) {
-        console.log("1");
-        profile.current.classList.remove("hidden")
-        profile.current.classList.add("flex")
-      }
-      else {
-        profile.current.classList.remove("flex")
-        profile.current.classList.add("hidden")
-      }
-    }
-    else {
-      profile.current.classList.remove("flex")
-      profile.current.classList.add("hidden")
-    }
-    if (id == 2) {
-      if (layer1) {
-        cart.current.classList.remove("hidden")
-        cart.current.classList.add("block")
-      } else {
-        cart.current.classList.remove("block")
-        cart.current.classList.add("hidden")
-      }
-    }
-    else {
-      cart.current.classList.remove("block")
-      cart.current.classList.add("hidden")
-    }
+
   }
 
 
@@ -145,7 +122,36 @@ const Search = () => {
     return prev + curr.price * curr.quantity
   }, 0)
 
-  // console.log(carts);
+
+
+  let Menubar = useRef(null)
+  let ProfileBtn = useRef(null)
+  let CartBtn = useRef(null)
+  useEffect(() => {
+    document.addEventListener("click", (event) => {
+      setActive(!active)
+      setProfileStatus(!profileStatus)
+      setCartStatus(!CartStatus)
+      
+      if (ProfileBtn.current.contains(event.target)) {
+        setProfileStatus(!profileStatus)
+      } else {
+        setProfileStatus(false)
+      }
+      
+      if (Menubar.current.contains(event.target)) {
+        setActive(!active)
+      } else {
+        setActive(false)
+      }
+      
+      if (CartBtn.current.contains(event.target)) {
+        setCartStatus(!CartStatus)
+      } else {
+        setCartStatus(false)
+      }
+    })
+  }, [active, profileStatus,CartStatus])
 
   return (
     <>
@@ -505,8 +511,8 @@ const Search = () => {
               </div>
               : ""
           }
-          <div className="flex gap-x-3 items-center cursor-pointer" onClick={handlerAct} type='button'>
-            <button className='flex gap-x-3 items-center outline-none focus:outline-none'>
+          <div className="flex gap-x-3 items-center cursor-pointer" type='button'>
+            <button className='flex gap-x-3 items-center outline-none focus:outline-none' ref={Menubar}>
               <span className='md:pr-0 pr-1'><img src={Cata} alt="" /></span>
               <h4 className='font-normal text-sm text-[#262626] font-dm md:block hidden'>Shop by Category</h4>
             </button>
@@ -518,60 +524,66 @@ const Search = () => {
 
           <div className="flex items-center gap-x-10">
             <div className="relative cursor-pointer">
-              <button type='button' className="flex items-center gap-x-[10px] focus:outline-none cursor-pointer" onClick={() => handlerAct2(1)}>
+              <button type='button' className="flex items-center gap-x-[10px] focus:outline-none cursor-pointer" ref={ProfileBtn}>
                 <img src={Prof} alt="" />
                 <img className='down' src={Down} alt="" />
               </button>
 
-              <div ref={profile} className="akash hidden border w-[200px] flex-col items-center absolute right-0 top-8 z-[999999] profile">
-                <SignLog />
-              </div>
+              {
+                profileStatus &&
+                <div className="border w-[200px] flex-col items-center absolute right-0 top-8 z-[999999] profile">
+                  <SignLog />
+                </div>
+              }
 
             </div>
-            <div className="relative">
+            <div>
               <div className="wrap">
-                <button className='focus:outline-none' onClick={() => handlerAct2(2)}>
+                <button className='focus:outline-none relative' ref={CartBtn}>
                   <img src={Cart} alt="" />
+              <div className="absolute -left-[10px] top-[11px] bg-[#262626] font-dm center text-[12px] h-5 w-5 rounded-full text-[#fff]">{totalquantity}</div>
                 </button>
               </div>
 
-              <div className="absolute -left-[10px] top-[11px] bg-[#262626] font-dm center text-[12px] h-5 w-5 rounded-full text-[#fff]">{totalquantity}</div>
-              <div ref={cart} className={`akash hidden absolute bg-[#fff] right-0  top-8 w-96  border box-border border-[#979797] z-[9999999]`}>
-                <div className={`${totalAm > 0 ? "max-h-72":"h-0"} overflow-y-scroll w-full cursor-pointer`}>
-                  {
-                    carts.map((item, index) =>
-                    (
-                      <SearchCartItem key={index} data={item} />
-                    ))
-                  }
+
+              {
+                CartStatus &&
+                <div className={`absolute bg-[#fff] right-0  top-8 w-96  border box-border border-[#979797] z-[99]`}>
+                  <div className={`${totalAm > 0 ? "max-h-72" : "h-0"} overflow-y-scroll w-full cursor-pointer`}>
+                    {
+                      carts.map((item, index) =>
+                      (
+                        <SearchCartItem key={index} data={item} />
+                      ))
+                    }
+                  </div>
+                  <div className={`pt-[14px] pl-[21px] pb-4`}>
+                    {
+                      totalAm > 0 ?
+                        <>
+                          <div>
+                            <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>{totalAm.toFixed(2)}$</span></h3>
+                            <button onClick={() => { navigate('/cart') }} className='w-36 h-12 border-2 border-[#2B2B2B] hover:bg-[#262626] hover:text-[#fff] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
+                            <button className='w-36 h-12 ml-[21px] border-2 border-[#2B2B2B] hover:bg-[#262626] hover:text-[#fff] font-bold text-sm text-[#262626] font-dm'>Checkout</button>
+                          </div>
+                        </>
+                        :
+                        <>
+                          <div>
+                            <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] capitalize font-dm'> Please Shopping... <span className='font-bold text-[#262626]'>0 items in your cart</span></h3>
+                            <h3 className='pb-[13px] text-base leading-[144%] capitalize font-dm font-bold text-[#262626]'> Happy Shopping...</h3>
+                          </div>
+                        </>
+                    }
+                  </div>
                 </div>
-                <div className={`pt-[14px] pl-[21px] pb-4`}>
-                  {
-                    totalAm > 0 ?
-                      <>
-                        <div>
-                          <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] font-dm'>Subtotal: <span className='font-bold text-[#262626]'>{totalAm.toFixed(2)}$</span></h3>
-                          <button onClick={()=>{navigate('/cart')}} className='w-36 h-12 border-2 border-[#2B2B2B] hover:bg-[#262626] hover:text-[#fff] font-dm font-bold text-sm text-[#262626]'>View Cart</button>
-                          <button className='w-36 h-12 ml-[21px] border-2 border-[#2B2B2B] hover:bg-[#262626] hover:text-[#fff] font-bold text-sm text-[#262626] font-dm'>Checkout</button>
-                        </div>
-                      </>
-                      :
-                      <>
-                        <div>
-                          <h3 className='pb-[13px] font-normal text-base leading-[144%] text-[#767676] capitalize font-dm'> Please Shopping... <span className='font-bold text-[#262626]'>0 items in your cart</span></h3>
-                          <h3 className='pb-[13px] text-base leading-[144%] capitalize font-dm font-bold text-[#262626]'> Happy Shopping...</h3>
-                        </div>
-                      </>
-                  }
-                </div>
-              </div>
+              }
+
 
             </div>
           </div>
 
           <div className="searchdata absolute left-0 top-full w-full z-[999999]">
-
-
             {
               fileterProduct &&
               (
