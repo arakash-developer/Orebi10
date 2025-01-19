@@ -34,7 +34,7 @@ const Navbar = () => {
 
           {/* Navigation Menu */}
           <ul
-            className={`flex flex-col md:flex-row gap-x-[40px] w-full justify-center absolute left-0 top-[80px] z-[9999] md:static bg-slate-200 md:bg-transparent transition-all duration-300 ease-in-out md:opacity-100 md:pointer-events-auto p-3 ${show ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} z-[9999999]`}
+            className={`flex flex-col md:flex-row gap-x-[40px] w-full justify-center absolute left-0 top-[80px] z-[9999] md:static bg-slate-200 md:bg-transparent transition-all duration-300 ease-in-out md:opacity-100 md:pointer-events-auto p-3 ${show ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"} z-[999999999]`}
           >
             <Li className="text-[#000] md:text-[#767676]" liText="Home" to="/home" />
             <Li className="text-[#000] md:text-[#767676]" liText="Shop" to="/shop" />
